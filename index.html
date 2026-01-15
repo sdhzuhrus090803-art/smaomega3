@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Omega 3- Website Sekolah Modern</title>
+    
+    <!-- Menggunakan Tailwind CSS untuk styling modern & responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Inter & Merriweather) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Konfigurasi Tema Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', /* Biru Sekolah Profesional */
+                        secondary: '#10b981', /* Hijau Aksen */
+                        dark: '#0f172a',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS Kustom Tambahan -->
+    <style>
+        /* Animasi Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styling Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1e40af;
+        }
+
+        /* Hover Card Effect */
+        .hover-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Navbar Background Transition */
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-light antialiased">
+
+    <!-- =======================
+         1. NAVBAR
+    ======================== -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent text-white">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo Sekolah -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-white text-primary flex items-center justify-center rounded-full font-bold text-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold leading-tight">SMA Omega 3</h1>
+                    <p class="text-xs font-light tracking-wider">BELGIUM</p>
+                </div>
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center space-x-6 font-medium text-sm">
+                <a href="#beranda" class="hover:text-secondary transition">Beranda</a>
+                <a href="#profil" class="hover:text-secondary transition">Profil</a>
+                <a href="#akademik" class="hover:text-secondary transition">Akademik</a>
+                <a href="#guru" class="hover:text-secondary transition">Guru</a>
+                <a href="#fasilitas" class="hover:text-secondary transition">Fasilitas</a>
+                <a href="#prestasi" class="hover:text-secondary transition">Prestasi</a>
+                <a href="#berita" class="hover:text-secondary transition">Berita</a>
+                <a href="#ppdb" class="bg-secondary hover:bg-green-700 text-white px-5 py-2 rounded-full transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Daftar PPDB
+                </a>
+            </div>
+
+            <!-- Hamburger Menu (Mobile) -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white text-gray-800 absolute w-full shadow-xl left-0 top-full border-t">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="#beranda" class="mobile-link hover:text-primary">Beranda</a>
+                <a href="#profil" class="mobile-link hover:text-primary">Profil Sekolah</a>
+                <a href="#struktur" class="mobile-link hover:text-primary">Struktur</a>
+                <a href="#program" class="mobile-link hover:text-primary">Program</a>
+                <a href="#guru" class="mobile-link hover:text-primary">Guru & Staff</a>
+                <a href="#fasilitas" class="mobile-link hover:text-primary">Fasilitas</a>
+                <a href="#prestasi" class="mobile-link hover:text-primary">Prestasi</a>
+                <a href="#berita" class="mobile-link hover:text-primary">Berita</a>
+                <a href="#ppdb" class="mobile-link text-secondary font-bold">Info PPDB</a>
+                <a href="#kontak" class="mobile-link hover:text-primary">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =======================
+         2. HERO SECTION (BERANDA)
+    ======================== -->
+    <section id="beranda" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="img/foto1.jpg">
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/80 to-dark/90"></div>
+        </div>
+
+        <div class="container mx-auto px-6 z-10 text-center text-white reveal active">
+            <span class="inline-block py-1 px-3 border border-secondary/50 rounded-full text-secondary text-sm mb-4 bg-secondary/10 backdrop-blur-sm">
+                Penerimaan Siswa Baru Tahun Ajaran 2025/2026 Dibuka
+            </span>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold mb-4 leading-tight">
+                Mewujudkan Generasi <br> <span class="text-secondary">Cerdas & Berkarakter</span>
+            </h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-200">
+                SMA Harapan Bangsa berkomitmen memberikan pendidikan berkualitas dengan fasilitas modern dan kurikulum terintegrasi.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#ppdb" class="bg-secondary hover:bg-green-600 text-white px-8 py-3 rounded-full font-semibold transition shadow-lg">
+                    Daftar Sekarang
+                </a>
+                <a href="#profil" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-3 rounded-full font-semibold transition">
+                    Pelajari Lebih Lanjut
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- =======================
+         3. PROFIL SEKOLAH
+    ======================== -->
+    <section id="profil" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-primary mb-2">Profil Sekolah</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <!-- Sejarah & Identitas -->
+                <div class="reveal">
+                    <img src="img/foto2.jpeg" alt="Sejarah Sekolah" class="rounded-lg shadow-xl mb-6 w-full object-cover h-64">
+                    <h3 class="text-xl font-bold text-primary mb-3">Sejarah Singkat</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Didirikan pada tahun 1990, SMA Omega 3 Belgium telah melahirkan ribuan alumni yang sukses di berbagai bidang. Berawal dari gedung sederhana, kini kami telah berkembang menjadi institusi pendidikan terdepan dengan fasilitas modern.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-primary">
+                        <p class="font-semibold text-primary">Akreditasi: A (Unggul)</p>
+                        <p class="text-sm text-gray-500">NPSN: 12345678 | Kurikulum: Merdeka</p>
+                    </div>
+                </div>
+
+                <!-- Visi & Misi -->
+                <div class="reveal delay-200">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 h-full">
+                        <h3 class="text-2xl font-bold text-dark mb-6">Visi & Misi</h3>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-lg font-bold text-secondary mb-2 flex items-center">
+                                <i class="fas fa-eye mr-2"></i> Visi
+                            </h4>
+                            <p class="text-gray-700 italic">"Menjadi sekolah unggulan yang berkarakter profil pelajar pancasila dan berwawasan global."</p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-lg font-bold text-secondary mb-3 flex items-center">
+                                <i class="fas fa-bullseye mr-2"></i> Misi
+                            </h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-600">Menyelenggarakan pembelajaran aktif, inovatif, dan menyenangkan.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-600">Mengembangkan potensi siswa secara akademik dan non-akademik.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-600">Menanamkan nilai-nilai budi pekerti luhur dan religius.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-600">Mewujudkan lingkungan sekolah yang bersih dan asri.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         4. STRUKTUR ORGANISASI
+    ======================== -->
+    <section id="struktur" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl font-bold text-primary mb-2">Struktur Organisasi</h2>
+                <p class="text-gray-500">Mengenal pimpinan dan staf pengajar kami</p>
+            </div>
+
+            <div class="flex flex-col items-center reveal">
+                <!-- Kepala Sekolah -->
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm text-center border-b-4 border-primary mb-8 transform hover:-translate-y-2 transition duration-300">
+                    <img src="img/kepala sekolah.jpeg" alt="Kepala Sekolah" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-blue-50">
+                    <h3 class="text-xl font-bold text-dark">Prof. H. Rizal Hamdani, M.Pd</h3>
+                    <p class="text-primary font-semibold">Kepala Sekolah</p>
+                </div>
+
+                <!-- Wakil & Staf (Grid) -->
+                <div class="grid md:grid-cols-3 gap-6 w-full max-w-5xl">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-card text-center">
+                        <img src="img/waka kurikulum.jpeg" alt="Wakil Kurikulum" class="w-24 h-24 rounded-full mx-auto mb-3 object-cover">
+                        <h4 class="font-bold text-lg">Dr.Dokta, M.Pd</h4>
+                        <p class="text-gray-500 text-sm">Wakil Kurikulum</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-card text-center">
+                        <img src="img/waka kesiswaan.jpeg" alt="Wakil Kesiswaan" class="w-24 h-24 rounded-full mx-auto mb-3 object-cover">
+                        <h4 class="font-bold text-lg">M. Nur Afhdolun Mukarim, M.Pd</h4>
+                        <p class="text-gray-500 text-sm">Wakil Kesiswaan</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-card text-center">
+                        <img src="img/wakil sarana prasarana.jpeg" alt="Wakil Sarana" class="w-24 h-24 rounded-full mx-auto mb-3 object-cover">
+                        <h4 class="font-bold text-lg">Mr.Maul, M.M</h4>
+                        <p class="text-gray-500 text-sm">Wakil Sarana Prasarana</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         5. PROGRAM UNGGULAN
+    ======================== -->
+    <section id="program" class="py-20 bg-primary text-white relative overflow-hidden">
+        <!-- Decoration bg -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-secondary opacity-10 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold mb-2">Program Unggulan</h2>
+                <div class="w-20 h-1 bg-white mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition duration-300 reveal">
+                    <div class="w-14 h-14 bg-secondary rounded-lg flex items-center justify-center text-2xl mb-6 text-white">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Digital & Coding Class</h3>
+                    <p class="text-gray-200 mb-6 text-sm leading-relaxed">
+                        Program khusus untuk mengembangkan skill pemrograman dan desain grafis sejak dini, bekerja sama dengan industri teknologi.
+                    </p>
+                    <button onclick="openModal('modal-program-1')" class="text-secondary font-bold hover:text-white transition flex items-center gap-2 text-sm uppercase tracking-wide">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition duration-300 reveal delay-100">
+                    <div class="w-14 h-14 bg-yellow-400 rounded-lg flex items-center justify-center text-2xl mb-6 text-primary">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">International Prep</h3>
+                    <p class="text-gray-200 mb-6 text-sm leading-relaxed">
+                        Persiapan intensif untuk beasiswa luar negeri, termasuk pelatihan bahasa Inggris (IELTS/TOEFL) dan leadership camp.
+                    </p>
+                    <button onclick="openModal('modal-program-2')" class="text-yellow-400 font-bold hover:text-white transition flex items-center gap-2 text-sm uppercase tracking-wide">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition duration-300 reveal delay-200">
+                    <div class="w-14 h-14 bg-green-500 rounded-lg flex items-center justify-center text-2xl mb-6 text-white">
+                        <i class="fas fa-praying-hands"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tahfidz & Character</h3>
+                    <p class="text-gray-200 mb-6 text-sm leading-relaxed">
+                        Program pendalaman Al-Qur'an (Target hafalan minimal 3 Juz) dan pembentukan karakter religius sepanjang masa studi.
+                    </p>
+                    <button onclick="openModal('modal-program-3')" class="text-green-400 font-bold hover:text-white transition flex items-center gap-2 text-sm uppercase tracking-wide">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         6. KURIKULUM (AKADEMIK)
+    ======================== -->
+    <section id="akademik" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold text-primary mb-6">Kurikulum Nasional & Keunggulan</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Kami menerapkan <strong>Kurikulum Merdeka</strong> yang berpusat pada peserta didik. Metode pembelajaran dirancang untuk merangsang kreativitas, pemikiran kritis, dan kolaborasi.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-100 text-primary rounded-full flex items-center justify-center mt-1">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-800">Projek P5</h4>
+                                <p class="text-sm text-gray-500">Penguatan Profil Pelajar Pancasila melalui projek nyata.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-700 rounded-full flex items-center justify-center mt-1">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-800">Sains & Riset</h4>
+                                <p class="text-sm text-gray-500">Laboratorium modern untuk eksperimen sains dan penelitian siswa.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center mt-1">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-gray-800">Seni & Budaya</h4>
+                                <p class="text-sm text-gray-500">Pengembangan bakat seni musik, tari, dan lukis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal delay-200">
+                    <img src="img/kegiatan belajar.jpeg" alt="Kegiatan Belajar" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         7. GURU & TENAGA KEPENDIDIKAN
+    ======================== -->
+    <section id="guru" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-primary mb-2">Guru & Staf Pengajar</h2>
+                <p class="text-gray-500">Tenaga pendidik profesional dan berpengalaman</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Guru 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover-card group reveal">
+                    <div class="h-64 overflow-hidden">
+                        <img src="img/guru matematika.jpeg" alt="Guru" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h4 class="font-bold text-lg text-gray-800">Veri Irwandi, S.Si</h4>
+                        <p class="text-secondary text-sm font-medium">Guru Matematika</p>
+                    </div>
+                </div>
+                <!-- Guru 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover-card group reveal delay-100">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://picsum.photos/seed/teacher2/300/400" alt="Guru" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h4 class="font-bold text-lg text-gray-800">Rina Kartika, S.Pd</h4>
+                        <p class="text-secondary text-sm font-medium">Guru Bahasa Inggris</p>
+                    </div>
+                </div>
+                <!-- Guru 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover-card group reveal delay-200">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://picsum.photos/seed/teacher3/300/400" alt="Guru" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h4 class="font-bold text-lg text-gray-800">Drs. Suherman</h4>
+                        <p class="text-secondary text-sm font-medium">Guru Sejarah</p>
+                    </div>
+                </div>
+                <!-- Guru 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover-card group reveal delay-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://picsum.photos/seed/teacher4/300/400" alt="Guru" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h4 class="font-bold text-lg text-gray-800">Maya Sari, S.Kom</h4>
+                        <p class="text-secondary text-sm font-medium">Guru TIK</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#" class="text-primary font-semibold border-b-2 border-primary hover:text-secondary hover:border-secondary transition">Lihat Semua Guru</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         8. FASILITAS SEKOLAH
+    ======================== -->
+    <section id="fasilitas" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl font-bold text-primary mb-2">Fasilitas Sekolah</h2>
+                <p class="text-gray-500">Menunjang kegiatan belajar mengajar dengan prasarana lengkap</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+                <!-- Item Large -->
+                <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-lg cursor-pointer reveal">
+                    <img src="https://picsum.photos/seed/library/800/800" alt="Perpustakaan" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">Perpustakaan Digital</span>
+                    </div>
+                </div>
+                <!-- Item Normal -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer reveal delay-100">
+                    <img src="https://picsum.photos/seed/lab/400/400" alt="Lab" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white font-bold">Laboratorium IPA</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer reveal delay-100">
+                    <img src="img/lapangan olahraga .jpeg" alt="Lapangan" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white font-bold">Lapangan Olahraga</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer reveal delay-200">
+                    <img src="https://picsum.photos/seed/masjid/400/400" alt="Masjid" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white font-bold">Masjid Sekolah</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer reveal delay-200">
+                    <img src="https://picsum.photos/seed/cantin/400/400" alt="Kantin" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white font-bold">Kantin Sehat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         9. PRESTASI SEKOLAH
+    ======================== -->
+    <section id="prestasi" class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Prestasi Kami</h2>
+                    <p class="text-blue-200">Pencapaian siswa di tingkat daerah hingga internasional</p>
+                </div>
+                <a href="#" class="hidden md:inline-block border border-white/30 hover:bg-white hover:text-primary px-4 py-2 rounded transition mt-4 md:mt-0">Lihat Arsip Prestasi</a>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Prestasi Item 1 -->
+                <div class="flex flex-col md:flex-row bg-white/5 border border-white/10 p-6 rounded-xl items-center gap-6 hover:bg-white/10 transition reveal">
+                    <div class="w-20 h-20 flex-shrink-0 bg-yellow-500 rounded-full flex items-center justify-center text-3xl text-white shadow-lg">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="flex-grow text-center md:text-left">
+                        <div class="text-secondary text-sm font-bold uppercase tracking-wider mb-1">Akademik - 2023</div>
+                        <h3 class="text-xl font-bold">Juara 1 Olimpiade Sains Nasional (OSN) Matematika</h3>
+                        <p class="text-gray-300 text-sm mt-1">Diraih oleh Ahmad Fauzi (Kelas XII IPA 1)</p>
+                    </div>
+                </div>
+                
+                <!-- Prestasi Item 2 -->
+                <div class="flex flex-col md:flex-row bg-white/5 border border-white/10 p-6 rounded-xl items-center gap-6 hover:bg-white/10 transition reveal delay-100">
+                    <div class="w-20 h-20 flex-shrink-0 bg-blue-500 rounded-full flex items-center justify-center text-3xl text-white shadow-lg">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="flex-grow text-center md:text-left">
+                        <div class="text-secondary text-sm font-bold uppercase tracking-wider mb-1">Non-Akademik - 2023</div>
+                        <h3 class="text-xl font-bold">Juara Umum Lomba Futsal Antar SMA Se-Provinsi</h3>
+                        <p class="text-gray-300 text-sm mt-1">Tim Futsal SMA Omega 3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         10. BERITA & ARTIKEL
+    ======================== -->
+    <section id="berita" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl font-bold text-primary mb-2">Berita Terkini</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Berita 1 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover-card reveal cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img src="img/kunjungan.jpeg" alt="Berita" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-gray-500 mb-2"><i class="far fa-calendar-alt mr-1"></i> 12 Oktober 2023</div>
+                        <h3 class="font-bold text-lg mb-3 text-gray-800 hover:text-primary transition">Kunjungan Studi Banding dari SMA Negeri 1 Jakarta</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">SMA Omega 3 menerima kunjungan dalam rangka berbagi praktik baik implementasi kurikulum merdeka...</p>
+                        <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">Baca Selengkapnya</a>
+                    </div>
+                </div>
+
+                <!-- Berita 2 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover-card reveal delay-100 cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/seed/news2/400/300" alt="Berita" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-gray-500 mb-2"><i class="far fa-calendar-alt mr-1"></i> 05 Oktober 2023</div>
+                        <h3 class="font-bold text-lg mb-3 text-gray-800 hover:text-primary transition">Peringatan Hari Batik Nasional di Sekolah</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Seluruh civitas akademika mengenakan batik serentak sebagai bentuk cinta budaya Indonesia...</p>
+                        <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">Baca Selengkapnya</a>
+                    </div>
+                </div>
+
+                <!-- Berita 3 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover-card reveal delay-200 cursor-pointer">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/seed/news3/400/300" alt="Berita" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-gray-500 mb-2"><i class="far fa-calendar-alt mr-1"></i> 28 September 2023</div>
+                        <h3 class="font-bold text-lg mb-3 text-gray-800 hover:text-primary transition">Sosialisasi Bahaya Narkoba oleh BNN</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Kegiatan penyuluhan untuk meningkatkan kesadaran siswa tentang pentingnya menjauhi narkoba...</p>
+                        <a href="#" class="text-primary text-sm font-semibold hover:text-secondary">Baca Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         11. AGENDA & PENGUMUMAN
+    ======================== -->
+    <section class="py-16 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/3 reveal">
+                    <h2 class="text-2xl font-bold text-primary mb-6">Agenda Kegiatan</h2>
+                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-secondary">
+                        <div class="flex gap-4 mb-6 border-b border-gray-200 pb-4">
+                            <div class="text-center bg-white p-2 rounded shadow-sm w-16">
+                                <span class="block text-secondary font-bold text-xl">15</span>
+                                <span class="block text-xs uppercase text-gray-500">Nov</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Ujian Akhir Semester (UAS)</h4>
+                                <p class="text-sm text-gray-500">Seluruh Siswa</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-center bg-white p-2 rounded shadow-sm w-16">
+                                <span class="block text-secondary font-bold text-xl">20</span>
+                                <span class="block text-xs uppercase text-gray-500">Des</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Pembagian Raport</h4>
+                                <p class="text-sm text-gray-500">Aula Sekolah</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 reveal delay-100">
+                    <h2 class="text-2xl font-bold text-primary mb-6">Pengumuman Terbaru</h2>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4 items-start p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition cursor-pointer">
+                            <i class="fas fa-bullhorn text-primary mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Libur Maulid Nabi SAW</h4>
+                                <p class="text-sm text-gray-600">Kegiatan belajar mengajar diliburkan pada hari Kamis, tanggal...</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start p-4 bg-white border border-gray-100 rounded-lg hover:bg-gray-50 transition cursor-pointer">
+                            <i class="fas fa-bullhorn text-gray-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Pengambilan Buku Seragam</h4>
+                                <p class="text-sm text-gray-600">Siswa kelas X dapat mengambil buku seragam di tata usaha...</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         12. PPDB / PENDAFTARAN
+    ======================== -->
+    <section id="ppdb" class="py-20 bg-gray-900 text-white relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-secondary font-bold tracking-widest uppercase text-sm">Penerimaan Peserta Didik Baru</span>
+                <h2 class="text-4xl font-serif font-bold mt-2 mb-4">Bergabunglah Bersama Kami</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Jadilah bagian dari generasi penerus bangsa yang cerdas dan berkarakter di SMA Omega 3 Belgium.</p>
+            </div>
+
+            <!-- Alur Pendaftaran -->
+            <div class="grid md:grid-cols-4 gap-6 mb-16 text-center">
+                <!-- Step 1 -->
+                <div class="bg-gray-800 p-6 rounded-xl reveal">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto text-xl font-bold mb-4">1</div>
+                    <h4 class="font-bold mb-2">Daftar Online</h4>
+                    <p class="text-sm text-gray-400">Isi formulir pendaftaran melalui website.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-gray-800 p-6 rounded-xl reveal delay-100">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto text-xl font-bold mb-4">2</div>
+                    <h4 class="font-bold mb-2">Verifikasi</h4>
+                    <p class="text-sm text-gray-400">Verifikasi berkas di sekolah pada jadwal yang ditentukan.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-gray-800 p-6 rounded-xl reveal delay-200">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto text-xl font-bold mb-4">3</div>
+                    <h4 class="font-bold mb-2">Tes Seleksi</h4>
+                    <p class="text-sm text-gray-400">Mengikuti tes akademik dan wawancara.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="bg-gray-800 p-6 rounded-xl reveal delay-300">
+                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto text-xl font-bold mb-4">4</div>
+                    <h4 class="font-bold mb-2">Pengumuman</h4>
+                    <p class="text-sm text-gray-400">Cek kelulusan dan daftar ulang.</p>
+                </div>
+            </div>
+
+            <div class="text-center reveal">
+                <button class="bg-secondary hover:bg-green-700 text-white text-lg px-10 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                    <i class="fas fa-paper-plane mr-2"></i> Daftar Online Sekarang
+                </button>
+                <p class="mt-4 text-sm text-gray-500">Gelombang 1: 1 Maret - 30 April 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         13. KONTAK & LOKASI
+    ======================== -->
+    <section id="kontak" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl font-bold text-primary mb-2">Hubungi Kami</h2>
+                <p class="text-gray-500">Kami siap membantu menjawab pertanyaan Anda</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Form Kontak -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm reveal">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nama Lengkap</label>
+                            <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition" id="name" type="text" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                            <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition" id="email" type="email" placeholder="contoh@email.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Pesan</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition" id="message" rows="4" placeholder="Tulis pesan Anda..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-blue-900 text-white font-bold py-3 rounded-lg transition shadow-md">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                    <!-- Toast Notification -->
+                    <div id="toast" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+                        <strong class="font-bold">Berhasil!</strong>
+                        <span class="block sm:inline">Pesan Anda telah terkirim.</span>
+                    </div>
+                </div>
+
+                <!-- Info & Maps -->
+                <div class="reveal delay-200">
+                    <div class="mb-8">
+                        <div class="flex items-start mb-6">
+                            <i class="fas fa-map-marker-alt text-primary text-xl w-8 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Alamat</h4>
+                                <p class="text-gray-600">Jl. Lurus No. 103, Belgium Dalam, Belgium 12345</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-6">
+                            <i class="fas fa-phone text-primary text-xl w-8 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Telepon</h4>
+                                <p class="text-gray-600">(021) 1234-5678</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-6">
+                            <i class="fas fa-envelope text-primary text-xl w-8 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Email</h4>
+                                <p class="text-gray-600">info@smaomega3.sch.id</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Maps Placeholder -->
+                    <div class="w-full h-64 bg-gray-200 rounded-xl overflow-hidden shadow-md relative">
+                         <iframe 
+                            width="100%" 
+                            height="100%" 
+                            frameborder="0" 
+                            style="border:0" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.2409783479!2d106.829518!3d-6.175392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         FOOTER
+    ======================== -->
+    <footer class="bg-dark text-white py-10 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SMA Omega 3 Belgiumn</h3>
+                    <p class="text-gray-400 text-sm">Membangun karakter, meraih prestasi, menyongsong masa depan gemilang.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-secondary">Tautan Cepat</h4>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="#profil" class="hover:text-white transition">Profil Sekolah</a></li>
+                        <li><a href="#guru" class="hover:text-white transition">Guru & Staf</a></li>
+                        <li><a href="#ppdb" class="hover:text-white transition">Info PPDB</a></li>
+                        <li><a href="#berita" class="hover:text-white transition">Berita</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-secondary">Akademik</h4>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="#akademik" class="hover:text-white transition">Kurikulum</a></li>
+                        <li><a href="#fasilitas" class="hover:text-white transition">Fasilitas</a></li>
+                        <li><a href="#prestasi" class="hover:text-white transition">Prestasi</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-secondary">Ikuti Kami</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-pink-600 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                &copy; 2024 SMA Omega 3 Belgium. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- =======================
+         MODAL COMPONENT (Hidden by default)
+    ======================== -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black/70 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <!-- Modal Content Container -->
+        <div id="modal-content" class="bg-white rounded-xl max-w-lg w-full p-8 transform scale-95 transition-transform duration-300 relative">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Content injected via JS -->
+            <div id="modal-body">
+                <!-- Placeholder content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================
+         JAVASCRIPT LOGIC
+    ======================== -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Sticky Navbar Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled', 'text-gray-800');
+                navbar.classList.remove('text-white', 'py-6');
+                navbar.classList.add('py-4');
+            } else {
+                navbar.classList.remove('scrolled', 'text-gray-800', 'py-4');
+                navbar.classList.add('text-white', 'py-6');
+            }
+        });
+
+        // 3. Scroll Animation (Reveal on Scroll)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+
+        // 4. Modal Logic (Program Unggulan)
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const modalBody = document.getElementById('modal-body');
+
+        const programDetails = {
+            'modal-program-1': {
+                title: 'Digital & Coding Class',
+                content: `
+                    <p class="mb-4">Program ini dirancang untuk siswa yang tertarik di dunia teknologi. Fasilitas meliputi Lab Komputer spesifik, mentor dari perusahaan Startup, dan kurikulum tambahan:</p>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li>Web Development (HTML, CSS, JS)</li>
+                        <li>Data Science with Python</li>
+                        <li>UI/UX Design Basics</li>
+                        <li>Sertifikasi Junior Web Developer</li>
+                    </ul>
+                `
+            },
+            'modal-program-2': {
+                title: 'International Prep',
+                content: `
+                    <p class="mb-4">Program persiapan studi lanjut ke luar negeri. Fokus pada kemampuan bahasa dan softskill internasional:</p>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li>Intensive English Course (IELTS Prep)</li>
+                        <li>Leadership Camps</li>
+                        <li>University Exposure Fair</li>
+                        <li>Essay Writing Workshop</li>
+                    </ul>
+                `
+            },
+            'modal-program-3': {
+                title: 'Tahfidz & Character Building',
+                content: `
+                    <p class="mb-4">Membentuk siswa yang religius dan berakhlak mulia dengan program:</p>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li>Target Hafalan Minimal 3 Juz</li>
+                        <li>Kajian Rutin Pekanan</li>
+                        <li>Pembiasaan Sholat Dhuha & Dhuhur Berjamaah</li>
+                        <li>Bimbingan Konseling Islami</li>
+                    </ul>
+                `
+            }
+        };
+
+        function openModal(programId) {
+            const data = programDetails[programId];
+            if (data) {
+                modalBody.innerHTML = `
+                    <h3 class="text-2xl font-bold text-primary mb-4 border-b pb-2">${data.title}</h3>
+                    <div class="text-gray-600 leading-relaxed">${data.content}</div>
+                    <button onclick="closeModal()" class="mt-6 w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-800 transition">Tutup</button>
+                `;
+                
+                modalOverlay.classList.remove('hidden');
+                // Small timeout to allow display:block to apply before opacity transition
+                setTimeout(() => {
+                    modalOverlay.classList.remove('opacity-0');
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                }, 10);
+            }
+        }
+
+        function closeModal() {
+            modalOverlay.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modalOverlay.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal when clicking outside content
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // 5. Contact Form Handling
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const toast = document.getElementById('toast');
+            const form = document.getElementById('contactForm');
+            
+            // Simulate sending data
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Mengirim...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                // Show success message
+                toast.classList.remove('hidden');
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 3000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
